@@ -10,10 +10,10 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const imageContainer = document.querySelector('.image-container');
   const imageWords = [
-    { word: '사과', imageSrc: '사과.jpg' },
-    { word: '바나나', imageSrc: '바나나.jpg' },
-    { word: '감자', imageSrc: '감자.jpg' },
-    { word: '고구마', imageSrc: '고구마.jpg' },
+    { word: '사과', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EC%82%AC%EA%B3%BC.jpg' },
+    { word: '바나나', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EB%B0%94%EB%82%98%EB%82%98.jpg' },
+    { word: '감자', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EA%B0%90%EC%9E%90.jpg' },
+    { word: '고구마', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EA%B3%A0%EA%B5%AC%EB%A7%88.jpg' },
     // 다양한 단어와 이미지 경로를 추가합니다.
   ];
 
