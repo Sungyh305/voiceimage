@@ -40,13 +40,17 @@ if (API) {
 
   function showImage(url) {
     clearTimeout(hideTimeout);
-    imageContainer.src = url;
+    const imageElement = document.createElement('img');
+    imageElement.src = url;
+    imageContainer.appendChild(imageElement);
   }
 
   function removeImageBackgroundDelayed() {
     clearTimeout(hideTimeout); // 이전에 예약된 사라짐 타이머를 취소합니다.
     hideTimeout = setTimeout(() => {
-      imageContainer.src = '';
+      while (imageContainer.firstChild) {
+        imageContainer.removeChild(imageContainer.firstChild);
+      }
     }, 3000); // 3초 후에 그림이 사라지도록 합니다.
   }
 }
