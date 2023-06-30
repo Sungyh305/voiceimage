@@ -8,8 +8,8 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
-  const imageContainer = document.querySelector('.image-container');
   const mainImage = document.getElementById('mainImage');
+  const secondaryImage = document.getElementById('secondaryImage');
   const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
   let currentImageIndex = 0;
 
@@ -31,6 +31,7 @@ if (API) {
       imageUrls.splice(matchingImageIndex, 1); // Remove the matching image from the array
       const newImageIndex = currentImageIndex % imageUrls.length;
       mainImage.src = imageUrls[newImageIndex];
+      secondaryImage.src = imageUrls[(newImageIndex + 1) % imageUrls.length];
       currentImageIndex = newImageIndex;
     }
   }
