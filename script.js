@@ -35,11 +35,11 @@ if (API) {
       for (const word of imageWords) {
         if (transcript.includes(word.word)) {
           if (imageContainer.children.length === 2) {
-            removeImages(false); // Pass false to prevent removing the initial images
+            removeImages();
             showInitialImages();
           }
           showImage(word.imageSrc);
-          removeImageBackgroundDelayed(word.imageSrc);
+          removeImageBackgroundDelayed();
           break;
         }
       }
@@ -65,23 +65,16 @@ if (API) {
     imageContainer.appendChild(imageElement);
   }
 
-  function removeImages(removeAll = true) {
-    const startIndex = removeAll ? 0 : 2; // Start index for removing images
-    while (imageContainer.children.length > startIndex) {
+  function removeImages() {
+    while (imageContainer.firstChild) {
       imageContainer.removeChild(imageContainer.firstChild);
     }
   }
 
-  function removeImageBackgroundDelayed(imageSrc) {
+  function removeImageBackgroundDelayed() {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
-      const images = imageContainer.querySelectorAll('img');
-      for (const image of images) {
-        if (image.src === imageSrc) {
-          imageContainer.removeChild(image);
-          break;
-        }
-      }
+      removeImages();
     }, 3000);
   }
 }
