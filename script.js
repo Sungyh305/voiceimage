@@ -34,7 +34,11 @@ if (API) {
 
       for (const word of imageWords) {
         if (transcript.includes(word.word)) {
-          removeImages();
+          if (imageContainer.children.length === 2) {
+            removeImages();
+          } else if (imageContainer.children.length === 1) {
+            showInitialImages();
+          }
           showImage(word.imageSrc);
           removeImageBackgroundDelayed();
           break;
