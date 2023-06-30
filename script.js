@@ -18,7 +18,7 @@ if (API) {
   });
 
   recognition.onresult = (event) => {
-    const transcript = event.results[event.results.length - 1][0].transcript;
+    const transcript = event.results[0][0].transcript;
     speechResult.textContent = transcript;
     changeImage(transcript);
   };
@@ -33,6 +33,8 @@ if (API) {
   }
 
   async function changeImage(transcript) {
+    await preloadImage(imageUrls[currentImageIndex]);
+
     const images = Array.from(imageContainer.querySelectorAll('img'));
     let matchingImageFound = false;
     let matchingImageIndex = -1;
@@ -47,7 +49,7 @@ if (API) {
     }
 
     if (matchingImageFound) {
-      images[matchingImageIndex].remove();
+      images[matchingImageIndex].parentNode.removeChild(images[matchingImageIndex]);
       currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
     }
 
