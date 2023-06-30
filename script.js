@@ -19,6 +19,10 @@ if (API) {
 
   let hideTimeout = null;
 
+  // 초기에 두 개의 이미지를 표시합니다.
+  showImage(imageWords[0].imageSrc);
+  showImage(imageWords[1].imageSrc);
+
   button.addEventListener('click', () => {
     recognition.start();
     button.textContent = 'Listening...';
@@ -31,6 +35,7 @@ if (API) {
 
       for (const word of imageWords) {
         if (transcript.includes(word.word)) {
+          removeImages();
           showImage(word.imageSrc);
           removeImageBackgroundDelayed();
           break;
@@ -40,18 +45,21 @@ if (API) {
   };
 
   function showImage(imageSrc) {
-    clearTimeout(hideTimeout);
     const imageElement = document.createElement('img');
     imageElement.src = imageSrc;
     imageContainer.appendChild(imageElement);
   }
 
+  function removeImages() {
+    while (imageContainer.firstChild) {
+      imageContainer.removeChild(imageContainer.firstChild);
+    }
+  }
+
   function removeImageBackgroundDelayed() {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
-      while (imageContainer.firstChild) {
-        imageContainer.removeChild(imageContainer.firstChild);
-      }
+      removeImages();
     }, 3000);
   }
 }
