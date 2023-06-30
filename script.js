@@ -20,8 +20,7 @@ if (API) {
   let hideTimeout = null;
 
   // 초기에 두 개의 이미지를 표시합니다.
-  showImage(imageWords[0].imageSrc);
-  showImage(imageWords[1].imageSrc);
+  showInitialImages();
 
   button.addEventListener('click', () => {
     recognition.start();
@@ -43,6 +42,14 @@ if (API) {
       }
     }
   };
+
+  function showInitialImages() {
+    for (let i = 0; i < 2; i++) {
+      if (imageWords[i]) {
+        showImage(imageWords[i].imageSrc);
+      }
+    }
+  }
 
   function showImage(imageSrc) {
     const imageElement = document.createElement('img');
