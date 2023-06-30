@@ -4,7 +4,7 @@ if (API) {
   const recognition = new API();
 
   recognition.continuous = true;
-  recognition.lang = 'en-GB';
+  recognition.lang = 'ko-GB';
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
