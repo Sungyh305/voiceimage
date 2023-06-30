@@ -34,7 +34,7 @@ if (API) {
   }
 
   async function changeImage(transcript) {
-    const images = imageContainer.querySelectorAll('img');
+    const images = Array.from(imageContainer.querySelectorAll('img'));
     let matchingImageFound = false;
     let matchingImageIndex = -1;
 
