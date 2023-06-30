@@ -8,7 +8,7 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
-  const imageContainer = document.querySelector('.image-container');
+  const mainImage = document.getElementById('mainImage');
   const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
   let currentImageIndex = 0;
 
@@ -23,41 +23,14 @@ if (API) {
     changeImage(transcript);
   };
 
-  function preloadImage(url) {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.onload = resolve;
-      image.onerror = reject;
-      image.src = url;
-    });
-  }
+  function changeImage(transcript) {
+    const matchingImageIndex = imageUrls.findIndex(url => transcript.includes(url.replace('.jpg', '')));
 
-  async function changeImage(transcript) {
-    const images = Array.from(imageContainer.querySelectorAll('img'));
-    let matchingImageFound = false;
-    let matchingImageIndex = -1;
-  
-    for (let i = 0; i < images.length; i++) {
-      const image = images[i];
-      if (image.src.includes(transcript)) {
-        matchingImageFound = true;
-        matchingImageIndex = i;
-        break;
-      }
+    if (matchingImageIndex !== -1) {
+      imageUrls.splice(matchingImageIndex, 1); // Remove the matching image from the array
+      const newImageIndex = currentImageIndex % imageUrls.length;
+      mainImage.src = imageUrls[newImageIndex];
+      currentImageIndex = newImageIndex;
     }
-  
-    if (matchingImageFound) {
-      images[matchingImageIndex].remove();
-    }
-  
-    if (images.length < 2) {
-      const newImageIndex = currentImageIndex;
-      await preloadImage(imageUrls[newImageIndex]);
-      const newImage = document.createElement('img');
-      newImage.src = imageUrls[newImageIndex];
-      imageContainer.appendChild(newImage);
-    }
-  
-    currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
   }
-}  
+}
