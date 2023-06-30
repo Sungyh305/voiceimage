@@ -39,7 +39,7 @@ if (API) {
             showInitialImages();
           }
           showImage(word.imageSrc);
-          removeImageBackgroundDelayed();
+          removeImageBackgroundDelayed(word.imageSrc);
           break;
         }
       }
@@ -72,10 +72,16 @@ if (API) {
     }
   }
 
-  function removeImageBackgroundDelayed() {
+  function removeImageBackgroundDelayed(imageSrc) {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
-      removeImages();
+      const images = imageContainer.querySelectorAll('img');
+      for (const image of images) {
+        if (image.src === imageSrc) {
+          imageContainer.removeChild(image);
+          break;
+        }
+      }
     }, 3000);
   }
 }
