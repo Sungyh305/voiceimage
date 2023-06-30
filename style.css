@@ -31,3 +31,9 @@
     background-color: black;
     color: white;
 }
+
+.container img {
+    max-width: 200px;
+    height: auto;
+    margin: 10px;
+}
