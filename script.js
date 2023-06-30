@@ -27,19 +27,28 @@ if (API) {
   function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
 
+    let matchingImageFound = false;
+    let newImageIndex = -1;
+
     for (let i = images.length - 1; i >= 0; i--) {
       const image = images[i];
       if (image.src.includes(transcript)) {
+        matchingImageFound = true;
         imageContainer.removeChild(image);
+        break;
       }
     }
 
-    if (images.length < 2) {
-      const newImage = document.createElement('img');
-      newImage.src = imageUrls[currentImageIndex];
-      imageContainer.appendChild(newImage);
+    if (!matchingImageFound && images.length < 2) {
+      newImageIndex = currentImageIndex;
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
+
+    if (newImageIndex !== -1) {
+      const newImage = document.createElement('img');
+      newImage.src = imageUrls[newImageIndex];
+      imageContainer.appendChild(newImage);
+    }
   }
 }
