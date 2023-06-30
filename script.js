@@ -31,13 +31,13 @@ if (API) {
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
     } else if (images.length === 2) {
-      images[0].src = imageUrls[currentImageIndex];
+      images[1].src = imageUrls[currentImageIndex];
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
 
     if (images.length > 2) {
-      images[1].remove();
+      imageContainer.removeChild(images[0]);
     }
   }
 }
