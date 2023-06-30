@@ -20,12 +20,25 @@ if (API) {
   recognition.onresult = (event) => {
     for (const result of event.results) {
       speechResult.textContent = result[0].transcript;
-      changeImage();
+      changeImage(result[0].transcript);
     }
   };
 
-  function changeImage() {
+  function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
+    let targetImage = null;
+
+    for (const image of images) {
+      if (image.src.includes(transcript)) {
+        targetImage = image;
+        break;
+      }
+    }
+
+    if (targetImage) {
+      imageContainer.removeChild(targetImage);
+    }
+
     if (images.length < 2) {
       const newImage = document.createElement('img');
       newImage.src = imageUrls[currentImageIndex];
@@ -35,9 +48,5 @@ if (API) {
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
-
-    if (images.length > 2) {
-      imageContainer.removeChild(images[0]);
-    }
   }
 }
