@@ -39,7 +39,7 @@ if (API) {
     }
 
     if (matchingImageFound) {
-      imageContainer.removeChild(images[matchingImageIndex]);
+      images[matchingImageIndex].remove();
       currentImageIndex = (currentImageIndex + 1) % 4;
     }
 
