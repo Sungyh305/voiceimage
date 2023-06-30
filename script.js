@@ -14,12 +14,12 @@ if (API) {
     { word: '바나나', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EB%B0%94%EB%82%98%EB%82%98.jpg' },
     { word: '감자', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EA%B0%90%EC%9E%90.jpg' },
     { word: '고구마', imageSrc: 'https://github.com/Sungyh305/voiceimage/blob/main/%EA%B3%A0%EA%B5%AC%EB%A7%88.jpg' },
-    // 다양한 단어와 이미지 경로를 추가합니다.
+    // Add more words and image paths as needed
   ];
 
   let hideTimeout = null;
 
-  // 초기에 두 개의 이미지를 표시합니다.
+  // Show two initial images on the screen
   showInitialImages();
 
   button.addEventListener('click', () => {
@@ -34,10 +34,7 @@ if (API) {
 
       for (const word of imageWords) {
         if (transcript.includes(word.word)) {
-          if (imageContainer.children.length === 2) {
-            removeImages();
-            showInitialImages();
-          }
+          removeImages();
           showImage(word.imageSrc);
           removeImageBackgroundDelayed();
           break;
@@ -57,10 +54,10 @@ if (API) {
   function showImage(imageSrc) {
     const imageElement = document.createElement('img');
     imageElement.src = imageSrc;
-    imageElement.width = 50; // 이미지의 가로 크기를 설정합니다.
-    imageElement.height = 50; // 이미지의 세로 크기를 설정합니다.
+    imageElement.width = 100; // Set the width of the image
+    imageElement.height = 100; // Set the height of the image
     imageElement.onerror = function () {
-      this.style.display = 'none'; // 이미지 로딩에 실패하면 숨깁니다.
+      this.style.display = 'none'; // Hide the image if loading fails
     };
     imageContainer.appendChild(imageElement);
   }
@@ -75,6 +72,14 @@ if (API) {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
       removeImages();
+      showRandomImage();
     }, 3000);
+  }
+
+  function showRandomImage() {
+    const randomIndex = Math.floor(Math.random() * imageWords.length);
+    const randomWord = imageWords[randomIndex];
+    showImage(randomWord.imageSrc);
+    removeImageBackgroundDelayed();
   }
 }
