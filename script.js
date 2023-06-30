@@ -38,6 +38,8 @@ if (API) {
       const newImage = document.createElement('img');
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
+    } else {
+      images[1].src = imageUrls[currentImageIndex];
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
