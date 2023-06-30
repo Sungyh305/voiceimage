@@ -8,6 +8,7 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
+  const imageContainer = document.querySelector('.image-container');
   const images = [
     '고구마.jpg',
     '감자.jpg',
@@ -29,18 +30,16 @@ if (API) {
       images.splice(images.indexOf(matchingImage), 1);
     }
 
-    const container = document.querySelector('.container');
-    container.innerHTML = '';
+    imageContainer.innerHTML = '';
 
     for (const image of images) {
       const imgElement = document.createElement('img');
       imgElement.src = image;
-      imgElement.alt = image;
-      container.appendChild(imgElement);
+      imageContainer.appendChild(imgElement);
     }
 
     if (images.length === 0) {
-      container.textContent = 'No more images';
+      imageContainer.textContent = 'No more images';
     }
   };
 }
