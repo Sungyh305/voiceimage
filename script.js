@@ -18,10 +18,9 @@ if (API) {
   });
 
   recognition.onresult = (event) => {
-    for (const result of event.results) {
-      speechResult.textContent = result[0].transcript;
-      changeImage(result[0].transcript);
-    }
+    const transcript = event.results[event.results.length - 1][0].transcript;
+    speechResult.textContent = transcript;
+    changeImage(transcript);
   };
 
   function preloadImage(url) {
@@ -49,7 +48,7 @@ if (API) {
 
     if (matchingImageFound) {
       images[matchingImageIndex].remove();
-      currentImageIndex = (currentImageIndex + 1) % 4;
+      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
     }
 
     if (images.length < 2) {
@@ -58,7 +57,7 @@ if (API) {
       const newImage = document.createElement('img');
       newImage.src = imageUrls[newImageIndex];
       imageContainer.appendChild(newImage);
-      currentImageIndex = (currentImageIndex + 1) % 4;
+      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
     }
   }
 }
