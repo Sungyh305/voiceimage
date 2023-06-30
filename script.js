@@ -23,7 +23,10 @@ if (API) {
 
       // 이미지를 삭제하고 새 이미지로 대체함
       const images = imageContainer.querySelectorAll('img');
-      if (images.length < 2) {
+      if (images.length === 2) {
+        images[currentImageIndex].src = imageUrls[currentImageIndex];
+        currentImageIndex = (currentImageIndex + 1) % 4;
+      } else if (images.length < 2) {
         const newImage = document.createElement('img');
         newImage.src = imageUrls[currentImageIndex];
         imageContainer.appendChild(newImage);
