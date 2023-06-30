@@ -37,7 +37,8 @@ if (API) {
     currentImageIndex = (currentImageIndex + 1) % 4;
 
     if (images.length > 2) {
-      images[2].remove();
+      images[0].remove();
     }
   }
 }
+ㄴ
