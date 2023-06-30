@@ -44,11 +44,10 @@ if (API) {
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
     } else if (images.length === 2) {
-      const existingImage = images[0];
+      const existingImage = images[1];
       const newImage = document.createElement('img');
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.replaceChild(newImage, existingImage);
-      imageContainer.appendChild(existingImage);
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
