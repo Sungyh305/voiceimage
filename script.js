@@ -26,28 +26,18 @@ if (API) {
 
   function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
-    let targetImage = null;
 
     for (const image of images) {
       if (image.src.includes(transcript)) {
-        targetImage = image;
+        imageContainer.removeChild(image);
         break;
       }
-    }
-
-    if (targetImage) {
-      imageContainer.removeChild(targetImage);
     }
 
     if (images.length < 2) {
       const newImage = document.createElement('img');
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
-    } else if (images.length === 2) {
-      const existingImage = images[1];
-      const newImage = document.createElement('img');
-      newImage.src = imageUrls[currentImageIndex];
-      imageContainer.replaceChild(newImage, existingImage);
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
