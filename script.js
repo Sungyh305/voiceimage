@@ -33,12 +33,10 @@ if (API) {
   }
 
   async function changeImage(transcript) {
-    await preloadImage(imageUrls[currentImageIndex]);
-
     const images = Array.from(imageContainer.querySelectorAll('img'));
     let matchingImageFound = false;
     let matchingImageIndex = -1;
-
+  
     for (let i = 0; i < images.length; i++) {
       const image = images[i];
       if (image.src.includes(transcript)) {
@@ -47,19 +45,19 @@ if (API) {
         break;
       }
     }
-
+  
     if (matchingImageFound) {
-      images[matchingImageIndex].parentNode.removeChild(images[matchingImageIndex]);
-      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+      images[matchingImageIndex].remove();
     }
-
+  
     if (images.length < 2) {
       const newImageIndex = currentImageIndex;
       await preloadImage(imageUrls[newImageIndex]);
       const newImage = document.createElement('img');
       newImage.src = imageUrls[newImageIndex];
       imageContainer.appendChild(newImage);
-      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
     }
+  
+    currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
   }
-}
+}  
