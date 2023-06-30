@@ -36,7 +36,6 @@ if (API) {
         if (transcript.includes(word.word)) {
           if (imageContainer.children.length === 2) {
             removeImages();
-          } else if (imageContainer.children.length === 1) {
             showInitialImages();
           }
           showImage(word.imageSrc);
