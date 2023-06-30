@@ -26,29 +26,28 @@ if (API) {
 
   function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
-
     let matchingImageFound = false;
-    let newImageIndex = -1;
+    let matchingImageIndex = -1;
 
-    for (let i = images.length - 1; i >= 0; i--) {
+    for (let i = 0; i < images.length; i++) {
       const image = images[i];
       if (image.src.includes(transcript)) {
         matchingImageFound = true;
-        imageContainer.removeChild(image);
+        matchingImageIndex = i;
         break;
       }
     }
 
-    if (!matchingImageFound && images.length < 2) {
-      newImageIndex = currentImageIndex;
+    if (matchingImageFound) {
+      imageContainer.removeChild(images[matchingImageIndex]);
     }
 
-    currentImageIndex = (currentImageIndex + 1) % 4;
-
-    if (newImageIndex !== -1) {
+    if (images.length < 2) {
+      const newImageIndex = (currentImageIndex + 1) % 4;
       const newImage = document.createElement('img');
       newImage.src = imageUrls[newImageIndex];
       imageContainer.appendChild(newImage);
+      currentImageIndex = newImageIndex;
     }
   }
 }
