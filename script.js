@@ -24,7 +24,16 @@ if (API) {
     }
   };
 
-  function changeImage(transcript) {
+  function preloadImage(url) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = resolve;
+      image.onerror = reject;
+      image.src = url;
+    });
+  }
+
+  async function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
     let matchingImageFound = false;
     let matchingImageIndex = -1;
@@ -44,8 +53,10 @@ if (API) {
     }
 
     if (images.length < 2) {
+      const newImageIndex = currentImageIndex;
+      await preloadImage(imageUrls[newImageIndex]);
       const newImage = document.createElement('img');
-      newImage.src = imageUrls[currentImageIndex];
+      newImage.src = imageUrls[newImageIndex];
       imageContainer.appendChild(newImage);
       currentImageIndex = (currentImageIndex + 1) % 4;
     }
