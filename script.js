@@ -47,8 +47,8 @@ if (API) {
   function showImage(imageSrc) {
     const imageElement = document.createElement('img');
     imageElement.src = imageSrc;
-    imageElement.width = 200; // 이미지의 가로 크기를 설정합니다.
-    imageElement.height = 200; // 이미지의 세로 크기를 설정합니다.
+    imageElement.width = 50; // 이미지의 가로 크기를 설정합니다.
+    imageElement.height = 50; // 이미지의 세로 크기를 설정합니다.
     imageElement.onerror = function () {
       this.style.display = 'none'; // 이미지 로딩에 실패하면 숨깁니다.
     };
