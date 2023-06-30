@@ -10,10 +10,10 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const imageContainer = document.querySelector('.image-container');
   const imageWords = [
-    { word: '사과', imageSrc: 'images/사과.jpg' },
-    { word: '바나나', imageSrc: 'images/바나나.jpg' },
-    { word: '감자', imageSrc: 'images/감자.jpg' },
-    { word: '고구마', imageSrc: 'images/고구마.jpg' },
+    { word: '사과', imageSrc: '사과.jpg' },
+    { word: '바나나', imageSrc: '바나나.jpg' },
+    { word: '감자', imageSrc: '감자.jpg' },
+    { word: '고구마', imageSrc: '고구마.jpg' },
     // 다양한 단어와 이미지 경로를 추가합니다.
   ];
 
