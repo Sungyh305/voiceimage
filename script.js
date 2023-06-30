@@ -40,14 +40,14 @@ if (API) {
 
     if (matchingImageFound) {
       imageContainer.removeChild(images[matchingImageIndex]);
+      currentImageIndex = (currentImageIndex + 1) % 4;
     }
 
     if (images.length < 2) {
-      const newImageIndex = (currentImageIndex + 1) % 4;
       const newImage = document.createElement('img');
-      newImage.src = imageUrls[newImageIndex];
+      newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
-      currentImageIndex = newImageIndex;
+      currentImageIndex = (currentImageIndex + 1) % 4;
     }
   }
 }
