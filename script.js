@@ -27,10 +27,10 @@ if (API) {
   function changeImage(transcript) {
     const images = imageContainer.querySelectorAll('img');
 
-    for (const image of images) {
+    for (let i = images.length - 1; i >= 0; i--) {
+      const image = images[i];
       if (image.src.includes(transcript)) {
         imageContainer.removeChild(image);
-        break;
       }
     }
 
@@ -38,8 +38,6 @@ if (API) {
       const newImage = document.createElement('img');
       newImage.src = imageUrls[currentImageIndex];
       imageContainer.appendChild(newImage);
-    } else {
-      images[1].src = imageUrls[currentImageIndex];
     }
 
     currentImageIndex = (currentImageIndex + 1) % 4;
