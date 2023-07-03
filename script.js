@@ -6,7 +6,7 @@ if (API) {
   recognition.continuous = true;
   recognition.lang = 'ko-KR';
 
-  const button = document.querySelector('.start-listening');
+  const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
   const mainImage = document.getElementById('mainImage');
   const secondaryImage = document.getElementById('secondaryImage');
@@ -14,13 +14,8 @@ if (API) {
   let currentImageIndex = 0;
 
   button.addEventListener('click', () => {
-    if (recognition.continuous) {
-      recognition.stop();
-      button.textContent = 'Start Listening!';
-    } else {
-      recognition.start();
-      button.textContent = 'Listening...';
-    }
+    recognition.start();
+    button.textContent = 'Listening...';
   });
 
   recognition.onresult = (event) => {

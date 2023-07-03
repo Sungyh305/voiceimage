@@ -12,14 +12,6 @@
     align-items: center;
 }
 
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    }
-        
-
 .speech-recognition {
     padding: 1rem 2rem;
     border: none;
