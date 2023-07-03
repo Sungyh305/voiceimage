@@ -10,7 +10,7 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const mainImage = document.getElementById('mainImage');
   const secondaryImage = document.getElementById('secondaryImage');
-  const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
+  const imageUrls = ['감자.jpg', '사과.jpg', '바나나.jpg'];
   let currentImageIndex = 0;
   let timer;
 
