@@ -29,21 +29,32 @@ if (API) {
 
     if (matchingImageIndex !== -1) {
       const newImageIndex = matchingImageIndex;
-      mainImage.src = imageUrls[newImageIndex];
-      currentImageIndex = newImageIndex;
-
+      mainImage.classList.add('hidden');
       const imageElements = document.querySelectorAll('.image-container img');
       imageElements.forEach((img, index) => {
-        img.classList.toggle('highlighted', index === currentImageIndex);
+        if (index === currentImageIndex) {
+          img.classList.remove('highlighted');
+        }
       });
-
       clearTimeout(timer);
       timer = setTimeout(() => {
-        mainImage.src = '';
-        imageElements.forEach((img) => {
-          img.classList.remove('highlighted');
+        mainImage.src = imageUrls[newImageIndex];
+        mainImage.classList.remove('hidden');
+        imageElements.forEach((img, index) => {
+          if (index === newImageIndex) {
+            img.classList.add('highlighted');
+          }
         });
-      }, 3000);
+        currentImageIndex = newImageIndex;
+        setTimeout(() => {
+          mainImage.classList.add('hidden');
+          imageElements.forEach((img, index) => {
+            if (index === newImageIndex) {
+              img.classList.remove('highlighted');
+            }
+          });
+        }, 3000);
+      }, 0);
     }
   }
 }
