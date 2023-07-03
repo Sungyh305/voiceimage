@@ -10,7 +10,7 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const mainImage = document.getElementById('mainImage');
   const secondaryImage = document.getElementById('secondaryImage');
-  const imageUrls = ['사과.jpg', '바나나.jpg', '고구마.jpg', '감자.jpg'];
+  const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
   let currentImageIndex = 0;
   let timer;
 
@@ -30,15 +30,14 @@ if (API) {
 
     if (matchingImageIndex !== -1) {
       const newImageIndex = matchingImageIndex;
-      mainImage.classList.remove('highlighted');
-      secondaryImage.classList.remove('highlighted');
       clearTimeout(timer);
       timer = setTimeout(() => {
         mainImage.src = imageUrls[newImageIndex];
         mainImage.classList.add('highlighted');
-        currentImageIndex = newImageIndex;
+        secondaryImage.style.opacity = 0;
         setTimeout(() => {
           mainImage.classList.remove('highlighted');
+          secondaryImage.style.opacity = 1;
         }, 3000);
       }, 0);
     }
