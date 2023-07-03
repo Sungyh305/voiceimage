@@ -29,18 +29,16 @@ if (API) {
     const matchingImageIndex = imageUrls.findIndex(url => transcript.includes(url.replace('.jpg', '')));
 
     if (matchingImageIndex !== -1) {
-      const newImageIndex = matchingImageIndex;
       clearTimeout(timer);
+      imageUrls.splice(matchingImageIndex, 1);
+      mainImage.src = imageUrls[currentImageIndex];
+      mainImage.classList.add('highlighted');
+      secondaryImage.style.opacity = 0;
       timer = setTimeout(() => {
-        imageUrls.splice(matchingImageIndex, 1);
-        mainImage.src = imageUrls[newImageIndex];
-        mainImage.classList.add('highlighted');
-        secondaryImage.style.opacity = 0;
-        setTimeout(() => {
-          mainImage.classList.remove('highlighted');
-          secondaryImage.style.opacity = 1;
-        }, 3000);
-      }, 0);
+        mainImage.classList.remove('highlighted');
+        secondaryImage.style.opacity = 1;
+      }, 3000);
+      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
     }
   }
 }
