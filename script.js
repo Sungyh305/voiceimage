@@ -14,8 +14,13 @@ if (API) {
   let currentImageIndex = 0;
 
   button.addEventListener('click', () => {
-    recognition.start();
-    button.textContent = 'Listening...';
+    if (recognition.continuous) {
+      recognition.stop();
+      button.textContent = 'Start Listening!';
+    } else {
+      recognition.start();
+      button.textContent = 'Listening...';
+    }
   });
 
   recognition.onresult = (event) => {
