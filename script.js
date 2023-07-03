@@ -9,7 +9,8 @@ if (API) {
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
   const mainImage = document.getElementById('mainImage');
-  const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
+  const secondaryImage = document.getElementById('secondaryImage');
+  const imageUrls = ['사과.jpg', '바나나.jpg', '고구마.jpg', '감자.jpg'];
   let currentImageIndex = 0;
   let timer;
 
@@ -29,30 +30,15 @@ if (API) {
 
     if (matchingImageIndex !== -1) {
       const newImageIndex = matchingImageIndex;
-      mainImage.classList.add('hidden');
-      const imageElements = document.querySelectorAll('.image-container img');
-      imageElements.forEach((img, index) => {
-        if (index === currentImageIndex) {
-          img.classList.remove('highlighted');
-        }
-      });
+      mainImage.classList.remove('highlighted');
+      secondaryImage.classList.remove('highlighted');
       clearTimeout(timer);
       timer = setTimeout(() => {
         mainImage.src = imageUrls[newImageIndex];
-        mainImage.classList.remove('hidden');
-        imageElements.forEach((img, index) => {
-          if (index === newImageIndex) {
-            img.classList.add('highlighted');
-          }
-        });
+        mainImage.classList.add('highlighted');
         currentImageIndex = newImageIndex;
         setTimeout(() => {
-          mainImage.classList.add('hidden');
-          imageElements.forEach((img, index) => {
-            if (index === newImageIndex) {
-              img.classList.remove('highlighted');
-            }
-          });
+          mainImage.classList.remove('highlighted');
         }, 3000);
       }, 0);
     }
