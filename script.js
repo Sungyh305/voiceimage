@@ -6,7 +6,7 @@ if (API) {
   recognition.continuous = true;
   recognition.lang = 'ko-KR';
 
-  const button = document.querySelector('.speech-recognition');
+  const button = document.querySelector('.start-listening');
   const speechResult = document.querySelector('.result');
   const mainImage = document.getElementById('mainImage');
   const secondaryImage = document.getElementById('secondaryImage');
