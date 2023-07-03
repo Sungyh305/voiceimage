@@ -39,6 +39,7 @@ if (API) {
           mainImage.classList.remove('highlighted');
           secondaryImage.style.opacity = 1;
         }, 3000);
+        imageUrls.splice(matchingImageIndex, 1);
       }, 0);
     }
   }
