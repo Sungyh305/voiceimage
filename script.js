@@ -6,10 +6,10 @@ if (API) {
   recognition.continuous = true;
   recognition.lang = 'ko-KR';
 
-  const button = document.querySelector('.speech-recognition'); // 수정된 부분
+  const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
-  const mainImage = document.getElementById('감자.jpg'); // 수정된 부분
-  const secondaryImage = document.getElementById('고구마.jpg'); // 수정된 부분
+  const mainImage = document.getElementById('감자.jpg');
+  const secondaryImage = document.getElementById('고구마.jpg');
   const imageUrls = ['고구마.jpg', '감자.jpg', '사과.jpg', '바나나.jpg'];
   let currentImageIndex = 0;
 
